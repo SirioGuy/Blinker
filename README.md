@@ -2,13 +2,13 @@
 
 Blinker.h is simple *non-blocking* LED controller Arduino library. It can handle multiple LED's blinking at different rythms maintaining a short code.
 
-## Usage:
+## Usage
 - Suitable for controlling single or multiple LEDs in a *time-based* pattern.
 - Ideal for projects that require visual indicators with precise timing control, such as blinking lights or status indicators.
 - Control status indicators that require blinking for a short duration (e.g., notifications, alarms).
 - Implement long-term, repeated blinking patterns with adjustable on and off intervals.
 
-## Functions:
+## Functions
 Turns the LED ***on*** (HIGH)
 ```cpp
 led.turnOn();
@@ -42,7 +42,7 @@ led.begin();
 > [!NOTE]
 > **All time values are in milliseconds.**
 
-## Examples:
+## Examples
 
 ### Basic On/Off Control
 ```cpp
