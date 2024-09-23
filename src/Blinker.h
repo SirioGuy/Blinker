@@ -31,8 +31,8 @@
   USAGE:
   - Suitable for controlling single or multiple LEDs in a time-based pattern.
   - Ideal for projects that require visual indicators with precise timing control, such as blinking lights or status indicators.
-
-  REVISION
+  - Control status indicators that require blinking for a short duration (e.g., notifications, alarms).
+  - Implement long-term, repeated blinking patterns with adjustable on and off intervals.
 
 */
 
