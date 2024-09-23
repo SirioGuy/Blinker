@@ -19,22 +19,22 @@ Turns the LED ***off*** (LOW)
 led.turnOff();
 ```
 
-Blinks the LED with a custom _on/off_ cycle. Returns ***true***
+Blinks the LED with a custom ***on***/***off*** cycle. Returns ***true***
 ```cpp
 led.blink(on_time, off_time);
 ```
 
-Blinks the LED for a specific duration (*blink_time*) before turning it off. Returns *true* when reaches max duration
+Blinks the LED for a specific duration (***blink_time***) before turning it ***off***. Returns ***true*** when reaches max duration
 ```cpp
 led.blink(on_time, off_time, blink_time);
 ```
 
-Returns whether the LED is currently *on* or *off*
+Returns whether the LED is currently ***on*** or ***off***
 ```cpp
 led.askState();
 ```
 
-Sets the LED pin as an *output*
+Sets the LED pin as an ***output***
 ```cpp
 led.begin();
 ```
@@ -137,6 +137,6 @@ void loop() {
 [Check out the instructions](https://www.arduino.cc/en/Guide/Libraries) from Arduino.
 
 ## Notes
-Currently only a LED controlling software. Any blocking code delaying it(e.g. *delay()* function) will prevent the LED from blink at specified time.
+Currently only a LED controlling software. Any blocking code delaying it(e.g. ***delay()*** function) will prevent the LED from blink at specified time.
 
 Any contribution would be helpfull, i'm starting to make libraries and i want to learn.
