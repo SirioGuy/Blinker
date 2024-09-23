@@ -1,31 +1,39 @@
 # LED Controller for Arduino boards
 
-Blinker.h is an Arduino library made it to work with multiple LED's at the same time. It can handle multiple LED's blinking at different rythms maintaining a short code.
+Blinker.h is simple *non-blocking* LED controller Arduino library. It can handle multiple LED's blinking at different rythms maintaining a short code.
 
 ## Usage:
-- Suitable for controlling single or multiple LEDs in a time-based pattern.
+- Suitable for controlling single or multiple LEDs in a *time-based* pattern.
 - Ideal for projects that require visual indicators with precise timing control, such as blinking lights or status indicators.
 - Control status indicators that require blinking for a short duration (e.g., notifications, alarms).
 - Implement long-term, repeated blinking patterns with adjustable on and off intervals.
 
 ## Functions:
+Turns the LED on (HIGH)
 ```cpp
-// Turns the LED on (HIGH).
 led.turnOn();
-
-// Turns the LED off (LOW).
+```
+Turns the LED off (LOW)
+```cpp
 led.turnOff();
+```
 
-// Blinks the LED with a custom on/off cycle. Returns true
+Blinks the LED with a custom on/off cycle. Returns true
+```cpp
 led.blink(on_time, off_time);
+```
 
-// Blinks the LED for a specific duration (blink_time) before turning it off. Returns false, and true after turning it off
+Blinks the LED for a specific duration (blink_time) before turning it off. Returns true when reaches max duration
+```cpp
 led.blink(on_time, off_time, blink_time);
+```
 
-// Returns whether the LED is currently on or off
+Returns whether the LED is currently on or off
+```cpp
 led.askState();
-
-// Sets the LED pin as an output.
+```
+Sets the LED pin as an output
+```cpp
 led.begin();
 ```
 
@@ -121,3 +129,12 @@ void loop() {
     }
 }
 ```
+
+## Installing
+
+[Check out the instructions](https://www.arduino.cc/en/Guide/Libraries) from Arduino.
+
+## Notes
+Currently only a LED controlling software. Any blocking code delaying it(e.g. delay() function) will prevent the LED from blink at specified time.
+
+Any contribution would be helpfull, i'm starting to make libraries and i want to learn.
