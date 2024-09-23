@@ -1,5 +1,5 @@
 /*
-    Example 4: Checking LED State
+    Example: Checking LED State
     This example shows how to check whether the LED is on or off using the askState function.
 
     * Connect an LED to pin 2 on your Arduino (make sure you use a resistor to limit current).

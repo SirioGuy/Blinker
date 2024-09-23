@@ -1,5 +1,5 @@
 /*
-    Example 1: Basic On/Off Control
+    Example: Basic On/Off Control
     This example demonstrates turning an LED on and off using the Blinker library.
 
     * Connect an LED to pin 2 on your Arduino (make sure you use a resistor to limit current).

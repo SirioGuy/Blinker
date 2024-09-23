@@ -1,5 +1,5 @@
 /*
-    Example 3: Blinking LED for a Specific Duration
+    Example: Blinking LED for a Specific Duration
     This example blinks an LED for a specified amount of time using the blink function 
     with a blink duration.
 
