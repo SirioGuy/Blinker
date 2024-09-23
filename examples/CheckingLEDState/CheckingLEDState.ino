@@ -21,14 +21,14 @@ void loop() {
 
     if (led.askState()) {
         Serial.println("LED is ON");
+        delay(1000);
     }
-    delay(1000);
 
     // Turn the LED off, check and print the state
     led.turnOff();  
 
     if (!led.askState()) {
         Serial.println("LED is OFF");
+        delay(1000);
     }
-    delay(1000);
 }
