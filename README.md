@@ -1,4 +1,4 @@
-# LED Controller for Arduino boards
+# LED Blinker for Arduino boards
 
 Blinker.h is simple *non-blocking* LED controller Arduino library. It can handle multiple LED's blinking at different rythms maintaining a short code.
 
