@@ -88,19 +88,19 @@ void setup() {
 
 void loop() {
     // Turn the LED on, check and print the state
-    led.turnOn();
+    led.turnOn();  
 
     if (led.askState()) {
         Serial.println("LED is ON");
+        delay(1000);
     }
-    delay(1000);
 
     // Turn the LED off, check and print the state
-    led.turnOff();
+    led.turnOff();  
 
     if (!led.askState()) {
         Serial.println("LED is OFF");
+        delay(1000);
     }
-    delay(1000);
 }
 ```
