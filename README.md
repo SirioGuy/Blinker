@@ -54,6 +54,23 @@ void loop() {
 }
 ```
 
+### Blinking Led Indefinitely
+```cpp
+#include <Blinker.h>
+
+Blinker led(2); // LED connected to pin 2
+
+void setup() {
+    // Initialize the pin as output
+    led.begin();
+}
+
+void loop() {
+    // Blink the LED: on for 500 ms, off for 500 ms
+    led.blink(500, 500); 
+}
+```
+
 ### Blinking LED for a Specific Duration
 ```cpp
 #include <Blinker.h>
