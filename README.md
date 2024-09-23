@@ -12,27 +12,23 @@ It can handle multiple LED's blinking at different rythms maintaining a short co
 ## Functions:
 
 ```
-led.turnOn();   // Turns the LED on (HIGH).
-```
+// Turns the LED on (HIGH).
+led.turnOn();   
 
-```
-led.turnOff();   // Turns the LED off (LOW).
-```
+// Turns the LED off (LOW).
+led.turnOff();   
 
-```
-led.blink(on_time, off_time); // Blinks the LED with a custom on/off cycle.
-```
+// Blinks the LED with a custom on/off cycle.
+led.blink(on_time, off_time); 
 
-```
-led.blink(on_time, off_time, blink_time);   // Blinks the LED for a specific duration (blink_time) before turning it off.
-```
+// Blinks the LED for a specific duration (blink_time) before turning it off.
+led.blink(on_time, off_time, blink_time);
 
-```
-led.askState();   // Returns whether the LED is currently on or off
-```
+// Returns whether the LED is currently on or off
+led.askState();   
 
-```
-led.begin();   // Sets the LED pin as an output.
+// Sets the LED pin as an output.
+led.begin();   
 ```
 
 > [!NOTE]
