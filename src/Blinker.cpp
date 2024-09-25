@@ -46,42 +46,33 @@ void Blinker::begin() {
   digitalWrite(_pin, _state);
 }
 
-// Turn the LED on
-void Blinker::turnOn() {
-  _state = HIGH;
-  digitalWrite(_pin, _state);  // Write HIGH to the LED pin to turn it on
-}
-
 // Turn the LED off
 void Blinker::turnOff() {
   _state = LOW;
   digitalWrite(_pin, _state);  // Write LOW to the LED pin to turn it off
 }
 
+// Turn the LED on
+void Blinker::turnOn() {
+  _state = HIGH;
+  digitalWrite(_pin, _state);  // Write HIGH to the LED pin to turn it on
+}
+
 // Return the current state of the LED (HIGH/LOW)
-bool Blinker::askState() {
+bool Blinker::getState() {
   return _state;
 }
 
-// Blink the LED indefinitely with specified on and off times
-bool Blinker::blink(int on_time, int off_time) {
-  unsigned long current_time = millis();  // Get the current time in milliseconds
-  
-  // If enough time has passed, change the state
-  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)) {
-    _state = !_state;  // Toggle the LED state (on/off)
-    digitalWrite(_pin, _state);  // Apply the state to the LED
-    _delay = current_time;  // Update the delay timer
+// Blink the LED for a limited duration (blink_max_time) with specified on and off delays
+bool Blinker::blink(int on_time, int off_time, unsigned long blink_max_time) {
+  if(off_time == 0){
+    off_time = on_time;
   }
-  return true;
-}
 
-// Blink the LED for a limited duration (blink_time) with specified on and off times
-bool Blinker::blink(int on_time, int off_time, unsigned long blink_time) {
   unsigned long current_time = millis(); // Get the current time in milliseconds
 
   // Check if the blink time has been reached
-  if(current_time - _blink_delay >= blink_time && _time_reached == 0) {
+  if(current_time - _blink_max_delay >= blink_max_time && _time_reached == 0) {
     _time_reached = 1; // Set the flag to indicate time has been reached
   }
 
