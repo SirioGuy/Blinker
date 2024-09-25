@@ -19,12 +19,7 @@ Turns the LED ***off*** (LOW)
 led.turnOff();
 ```
 
-Blinks the LED with a custom ***on***/***off*** cycle. Returns ***true***
-```cpp
-led.blink(on_time, off_time);
-```
-
-Blinks the LED for a specific duration (***blink_time***) before turning it ***off***. Returns ***true*** when reaches max duration
+Blinks the LED with a custom ***on***/***off*** cycle for a specific duration (***blink_time***) before turning it ***off***. Returns ***true*** when reaches max duration(***off_time*** and ***blink_time*** are optional, see examples)
 ```cpp
 led.blink(on_time, off_time, blink_time);
 ```
@@ -81,6 +76,24 @@ void loop() {
 }
 ```
 
+### Blinking LED Indefinitely with different on/off time
+``` cpp
+#include <Blinker.h>
+
+Blinker led(2); // LED connected to pin 2
+
+void setup() {
+    // Initialize the pin as output
+    led.begin();
+}
+
+void loop() {
+    // Turns the LED on 100ms every 500ms | led.blink(on_time, off_time)
+    led.blink(100, 500); 
+}
+```
+
+
 ### Blinking LED for a Specific Duration
 ```cpp
 #include <Blinker.h>
@@ -117,7 +130,7 @@ void loop() {
     // Turn the LED on, check and print the state
     led.turnOn();  
 
-    if (led.askState()) {
+    if (led.getState()) {
         Serial.println("LED is ON");
         delay(1000);
     }
@@ -125,7 +138,7 @@ void loop() {
     // Turn the LED off, check and print the state
     led.turnOff();  
 
-    if (!led.askState()) {
+    if (!led.getState()) {
         Serial.println("LED is OFF");
         delay(1000);
     }
