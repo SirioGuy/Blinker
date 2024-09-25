@@ -48,28 +48,25 @@ class Blinker {
     
     // Starts the LED by setting the pinMode
     void begin();
-    
+
     // Turns the LED on
     void turnOn();
-    
+
     // Turns the LED off
     void turnOff();
     
     // Asks the current state of the LED (on or off)
-    bool askState();
-    
-    // Blinks the LED with specified on and off times
-    bool blink(int on_time, int off_time);
-    
+    bool getState();
+
     // Blinks the LED with specified on/off times and a total blink duration (blink_time)
-    bool blink(int on_time, int off_time, unsigned long blink_time);
+    bool blink(int on_time, int off_time = 0, unsigned long blink_max_time = -1);
 
   private:
     byte _pin;                 // Stores the pin number for the LED
     bool _state;               // Stores the state of the LED (on/off)
     bool _time_reached;        // Used to check if the blink reach the maximum time
     unsigned long _delay;      // Used to track the last time the LED state changed
-    unsigned long _blink_delay;// Used to track the time and check if it exceeded of maximum time
+    unsigned long _blink_max_delay;// Used to track the time and check if it exceeded of maximum time
 };
 
 #endif
