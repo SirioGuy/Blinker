@@ -15,6 +15,6 @@ void setup() {
 }
 
 void loop() {
-    // Blink the LED: on for 500 ms, off for 500 ms
-    led.blink(500, 500); 
+    // Blink the LED every 500 ms
+    led.blink(500); 
 }
