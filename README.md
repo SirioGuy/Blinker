@@ -29,9 +29,9 @@ Returns whether the LED is currently ***on*** or ***off***
 led.askState();
 ```
 
-Sets the LED pin as an ***output***
+Sets the LED pin, and as an ***output***
 ```cpp
-led.begin();
+led.begin(pin);
 ```
 
 > [!NOTE]
@@ -43,11 +43,11 @@ led.begin();
 ```cpp
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
     // Initialize the pin as output
-    led.begin();
+    led.begin(2);
 }
 
 void loop() {
@@ -63,11 +63,11 @@ void loop() {
 ```cpp
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
     // Initialize the pin as output
-    led.begin();
+    led.begin(2);
 }
 
 void loop() {
@@ -80,11 +80,11 @@ void loop() {
 ``` cpp
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
     // Initialize the pin as output
-    led.begin();
+    led.begin(2);
 }
 
 void loop() {
@@ -98,11 +98,11 @@ void loop() {
 ```cpp
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
     // Initialize the pin as output
-    led.begin();
+    led.begin(2);
 }
 
 void loop() {
@@ -118,12 +118,12 @@ void loop() {
 ```cpp
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
     // Initialize serial communication and the LED pin
     Serial.begin(9600); 
-    led.begin();
+    led.begin(2);
 }
 
 void loop() {

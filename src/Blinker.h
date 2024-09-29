@@ -44,10 +44,10 @@
 class Blinker {
   public:
     // Constructor to initialize the pin for the LED
-    Blinker(byte pin);
+    Blinker();
     
     // Starts the LED by setting the pinMode
-    void begin();
+    void begin(byte pin);
 
     // Turns the LED on
     void turnOn();
