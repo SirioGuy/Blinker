@@ -5,22 +5,31 @@
   to an Arduino pin, allowing it to be turned on, off, and blinked in a repeated pattern, either indefinitely 
   or for a specified period.
 
-  Version: 1.0
-  Last revision: September 23, 2024
+  Version: 1.1
+  Last revision: February 17, 2025
   Created by: Sirio Altilar Guy
+
+  Version: 1.1
+  Last revision: February 17, 2025
+  Created by: Sirio Altilar Guy
+
+  FEATURES:
+  - Set a specific pin for LED control.
+  - Turn the LED on or off.
+  - Blink the LED indefinitely with customizable on/off times.
+  - Blink the LED for a limited duration with customizable on/off times.
+  - Check the current state of the LED (on or off).
 
   FUNCTIONALITY:
   - begin(): Sets the LED pin as an output, preparing it for use.
-  - turnOn(): Turns the LED on (HIGH).
-  - turnOff(): Turns the LED off (LOW).
-  - askState(): Returns whether the LED is currently on (HIGH) or off (LOW).
+  - on(): Turns the LED on (HIGH).
+  - off(): Turns the LED off (LOW).
+  - get(): Returns whether the LED is currently on (HIGH) or off (LOW).
   - blink(int on_time, int off_time): Blinks the LED repeatedly with a custom on/off cycle.
-  - blink(int on_time, int off_time, unsigned long blink_time): Blinks the LED for a specific duration 
-    (defined by blink_time) before turning it off.
+  - blink(int on_time, int off_time, unsigned long blink_time): Blinks the LED for a specific duration (defined by blink_time) before turning it off.
 
   INTERNAL LOGIC:
-  - The class uses the `millis()` function to manage time-based blinking. This allows non-blocking delays, 
-    so the program can continue running while LEDs are blinking.
+  - The class uses the `millis()` function to manage time-based blinking. This allows non-blocking delays, so the program can continue running while LEDs are blinking.
   - The second `blink()` function stops blinking after a total duration (blink_time) and then turns the LED off.
 
   USAGE EXAMPLES:
@@ -46,20 +55,20 @@ void Blinker::begin(byte pin) {
   digitalWrite(_pin, _state);
 }
 
-// Turn the LED off
-void Blinker::turnOff() {
-  _state = LOW;
-  digitalWrite(_pin, _state);  // Write LOW to the LED pin to turn it off
-}
-
 // Turn the LED on
-void Blinker::turnOn() {
+void Blinker::on() {
   _state = HIGH;
   digitalWrite(_pin, _state);  // Write HIGH to the LED pin to turn it on
 }
 
+// Turn the LED off
+void Blinker::off() {
+  _state = LOW;
+  digitalWrite(_pin, _state);  // Write LOW to the LED pin to turn it off
+}
+
 // Return the current state of the LED (HIGH/LOW)
-bool Blinker::getState() {
+bool Blinker::get() {
   return _state;
 }
 
@@ -72,18 +81,18 @@ bool Blinker::blink(int on_time, int off_time, unsigned long blink_max_time) {
   unsigned long current_time = millis(); // Get the current time in milliseconds
 
   // Check if the blink time has been reached
-  if(current_time - _blink_max_delay >= blink_max_time && _time_reached == 0) {
-    _time_reached = 1; // Set the flag to indicate time has been reached
+  if(current_time - _blink_max_time >= blink_max_time && _time_reached == 0) {
+    _time_reached = true; // Set the flag to indicate time has been reached
   }
 
   // Blink the LED if the blink time has not been reached
-  if (current_time - _delay >= (_state == HIGH ? on_time : off_time) && _time_reached == 0) {
+  if (current_time - _delay >= (_state == HIGH ? on_time : off_time) && _time_reached == false) {
     _state = !_state; // Toggle the LED state (on/off)
     digitalWrite(_pin, _state); // Apply the state to the LED
     _delay = current_time; // Update the delay timer
-  } else if(_time_reached == 1) {
+  } else if(_time_reached == true) {
     turnOff(); // Turn off the LED after blink time is reached
-    return true; // Blinking finished
+    return false; // Not blinking
   }
-  return false; // Still blinking
+  return true; // Still blinking
 }

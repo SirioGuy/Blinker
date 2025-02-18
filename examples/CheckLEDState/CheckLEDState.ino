@@ -7,27 +7,27 @@
 
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
     // Initialize serial communication and the LED pin
     Serial.begin(9600); 
-    led.begin();
+    led.begin(2);
 }
 
 void loop() {
     // Turn the LED on, check and print the state
-    led.turnOn();  
+    led.on();  
 
-    if (led.askState()) {
+    if (led.get()) {
         Serial.println("LED is ON");
         delay(1000);
     }
 
     // Turn the LED off, check and print the state
-    led.turnOff();  
+    led.off();  
 
-    if (!led.askState()) {
+    if (!led.get()) {
         Serial.println("LED is OFF");
         delay(1000);
     }

@@ -11,12 +11,12 @@ Blinker.h is simple *non-blocking* LED controller Arduino library. It can handle
 ## Functions
 Turns the LED ***on*** (HIGH)
 ```cpp
-led.turnOn();
+led.on();
 ```
 
 Turns the LED ***off*** (LOW)
 ```cpp
-led.turnOff();
+led.off();
 ```
 
 Blinks the LED with a custom ***on***/***off*** cycle for a specific duration (***blink_time***) before turning it ***off***. Returns ***true*** when reaches max duration(***off_time*** and ***blink_time*** are optional, see examples)
@@ -26,7 +26,7 @@ led.blink(on_time, off_time, blink_time);
 
 Returns whether the LED is currently ***on*** or ***off***
 ```cpp
-led.askState();
+led.get();
 ```
 
 Sets the LED pin, and as an ***output***
@@ -46,15 +46,15 @@ led.begin(pin);
 Blinker led(); // LED connected to pin 2
 
 void setup() {
-    // Initialize the pin as output
+    // Initialize the pin as output and define the pin
     led.begin(2);
 }
 
 void loop() {
     // Turn the LED on, wait for 1 second, then turn it off
-    led.turnOn();  
+    led.on();  
     delay(1000);   
-    led.turnOff(); 
+    led.off(); 
     delay(1000);   
 }
 ```
@@ -66,13 +66,13 @@ void loop() {
 Blinker led(); // LED connected to pin 2
 
 void setup() {
-    // Initialize the pin as output
+    // Initialize the pin as output and define the pin
     led.begin(2);
 }
 
 void loop() {
-    // Blink the LED: on for 500 ms, off for 500 ms
-    led.blink(500, 500); 
+    // Blink the LED every 500 ms
+    led.blink(500); 
 }
 ```
 
@@ -83,7 +83,7 @@ void loop() {
 Blinker led(); // LED connected to pin 2
 
 void setup() {
-    // Initialize the pin as output
+    // Initialize the pin as output and define the pin
     led.begin(2);
 }
 
@@ -101,20 +101,21 @@ void loop() {
 Blinker led(); // LED connected to pin 2
 
 void setup() {
-    // Initialize the pin as output
+    // Initialize the pin as output and define the pin
     led.begin(2);
 }
 
 void loop() {
     // Blink for 5 seconds, on for 500 ms, off for 500 ms
-    if (led.blink(500, 500, 5000)) {  
-        // Once the blinking is finished, execute any code that you want
+    if (!led.blink(500, 500, 5000)) {  
+        // Once the blinking is finished, turn the LED off
+        led.off();
         delay(1000); // Optional delay before repeating or doing something else
     }
 }
 ```
 
-### Checking LED state with askState
+### Checking LED state with get
 ```cpp
 #include <Blinker.h>
 
@@ -128,17 +129,17 @@ void setup() {
 
 void loop() {
     // Turn the LED on, check and print the state
-    led.turnOn();  
+    led.on();  
 
-    if (led.getState()) {
+    if (led.get()) {
         Serial.println("LED is ON");
         delay(1000);
     }
 
     // Turn the LED off, check and print the state
-    led.turnOff();  
+    led.off();  
 
-    if (!led.getState()) {
+    if (!led.get()) {
         Serial.println("LED is OFF");
         delay(1000);
     }

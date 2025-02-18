@@ -7,11 +7,11 @@
 
 #include <Blinker.h>
 
-Blinker led(2); // LED connected to pin 2
+Blinker led(); // LED connected to pin 2
 
 void setup() {
-    // Initialize the pin as output
-    led.begin();
+    // Initialize the pin as output and define the pin
+    led.begin(2);
 }
 
 void loop() {
