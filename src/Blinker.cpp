@@ -43,14 +43,14 @@
 #include "Blinker.h"
 
 // Constructor to initialize the pin and default values
-Blinker::Blinker() {
+Blinker::Blinker(byte pin) {
+  _pin = pin;
   _state = LOW;  // Initialize the LED state as off
   _delay = 0;
 }
 
 // Initialize the pin as an output
-void Blinker::begin(byte pin) {
-  _pin = pin;
+void Blinker::begin() {
   pinMode(_pin, OUTPUT);
   digitalWrite(_pin, _state);
 }
