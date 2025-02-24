@@ -51,6 +51,7 @@ Blinker::Blinker(byte pin) {
   _pin = pin;
   _state = LOW;  // Initialize the LED state as off
   _delay = 0;
+  _time_reached = false;
 
 }
 
@@ -130,7 +131,6 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
   if(current_time - _max_time   >=   _max_time   &&   _time_reached == false) {
 
     _time_reached = true; // Set the flag to indicate time has been reached
-    return false; // Not blinking
 
   }
 
@@ -138,7 +138,7 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
 
   // Blink the LED if the blink time has not been reached
 
-  if (current_time - _delay   >=   (_state == HIGH ? on_time : off_time)   &&   _time_reached == false) {
+  if (current_time - _delay   >=   (_state == HIGH    ? on_time    : off_time)   &&   _time_reached == false) {
 
     _state = !_state; // Toggle the LED state (on/off)
     digitalWrite(_pin, _state); // Apply the state to the LED
@@ -147,5 +147,12 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
     return true; // Still blinking
 
   } 
+
+
+  else if(_time_reached == true) {
+
+    return false; // Not blinking
+
+  }
 
 }
