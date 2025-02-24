@@ -39,60 +39,120 @@
   - Implement long-term, repeated blinking patterns with adjustable on and off intervals.
 */
 
-#include "Arduino.h"
 #include "Blinker.h"
 
+#include "Arduino.h"
+
+
 // Constructor to initialize the pin and default values
+
 Blinker::Blinker(byte pin) {
+
   _pin = pin;
   _state = LOW;  // Initialize the LED state as off
   _delay = 0;
+
 }
+
+
+
+
 
 // Initialize the pin as an output
+
 void Blinker::begin() {
+
   pinMode(_pin, OUTPUT);
   digitalWrite(_pin, _state);
+
 }
+
+
+
+
 
 // Turn the LED on
+
 void Blinker::on() {
+
   _state = HIGH;
   digitalWrite(_pin, _state);  // Write HIGH to the LED pin to turn it on
+
 }
+
+
+
+
 
 // Turn the LED off
+
 void Blinker::off() {
+
   _state = LOW;
   digitalWrite(_pin, _state);  // Write LOW to the LED pin to turn it off
+
 }
+
+
+
+
 
 // Return the current state of the LED (HIGH/LOW)
+
 bool Blinker::get() {
+
   return _state;
+
 }
 
+
+
+
+
 // Blink the LED for a limited duration (blink_max_time) with specified on and off delays
+
 bool Blinker::blink(int on_time, int off_time, unsigned long blink_max_time) {
+
+
   if(off_time == 0){
+
     off_time = on_time;
+
   }
+
 
   unsigned long current_time = millis(); // Get the current time in milliseconds
 
+
+  
   // Check if the blink time has been reached
-  if(current_time - _blink_max_time >= blink_max_time && _time_reached == 0) {
+
+  if(current_time - _blink_max_time   >=   blink_max_time   &&   _time_reached == 0) {
+
     _time_reached = true; // Set the flag to indicate time has been reached
+
   }
 
+
+
   // Blink the LED if the blink time has not been reached
-  if (current_time - _delay >= (_state == HIGH ? on_time : off_time) && _time_reached == false) {
+
+  if (current_time - _delay   >=   (_state == HIGH ? on_time : off_time)   &&   _time_reached == false) {
+
     _state = !_state; // Toggle the LED state (on/off)
     digitalWrite(_pin, _state); // Apply the state to the LED
     _delay = current_time; // Update the delay timer
-  } else if(_time_reached == true) {
-    turnOff(); // Turn off the LED after blink time is reached
-    return false; // Not blinking
+    
+    return _time_reached; // Still blinking
+
+  } 
+
+
+  else if(_time_reached == true) {
+
+    off(); // Turn off the LED after blink time is reached
+    return _time_reached; // Not blinking
+
   }
-  return true; // Still blinking
+
 }
