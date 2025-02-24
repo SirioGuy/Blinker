@@ -51,7 +51,6 @@ Blinker::Blinker(byte pin) {
   _pin = pin;
   _state = LOW;  // Initialize the LED state as off
   _delay = 0;
-  _time_reached = false;
 
 }
 
