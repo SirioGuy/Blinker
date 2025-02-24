@@ -8,18 +8,17 @@
 
 #include <Blinker.h>
 
-Blinker led(); // LED connected to pin 2
+Blinker led(2); // LED connected to pin 2
 
 void setup() {
     // Initialize the pin as output and define the pin
-    led.begin(2);
+    led.begin();
 }
 
 void loop() {
-    // Blink for 5 seconds, on for 500 ms, off for 500 ms
-    if (!led.blink(500, 500, 5000)) {  
+    // Blink for 5 seconds, on 500ms and off 500 ms  |  led.blink(on_time, off_time, max_time)
+    if (led.blink(500, 500, 5000)) {  
         // Once the blinking is finished, turn the LED off
         led.off();
-        delay(1000); // Optional delay before repeating or doing something else
     }
 }

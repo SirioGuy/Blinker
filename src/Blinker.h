@@ -79,7 +79,7 @@ class Blinker {
 
 
     // Blinks the LED with specified on/off times and a total blink duration (blink_time)
-    bool blink(int on_time, int off_time = 0, unsigned long blink_max_time = -1);
+    bool blink(int on_time, int off_time = 0, unsigned long max_time = -1);
 
 
 
@@ -97,7 +97,7 @@ class Blinker {
     unsigned long _delay;      // Used to track the last time the LED state changed
 
 
-    unsigned long _blink_max_time;// Used to track the time and check if it exceeded of maximum time
+    unsigned long _max_time;// Used to track the time and check if it exceeded of maximum time
 
 };
 

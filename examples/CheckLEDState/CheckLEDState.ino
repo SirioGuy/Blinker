@@ -7,12 +7,12 @@
 
 #include <Blinker.h>
 
-Blinker led(); // LED connected to pin 2
+Blinker led(2); // LED connected to pin 2
 
 void setup() {
     // Initialize serial communication and the LED pin
     Serial.begin(9600); 
-    led.begin(2);
+    led.begin();
 }
 
 void loop() {

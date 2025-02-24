@@ -111,7 +111,7 @@ bool Blinker::get() {
 
 // Blink the LED for a limited duration (blink_max_time) with specified on and off delays
 
-bool Blinker::blink(int on_time, int off_time, unsigned long blink_max_time) {
+bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
 
 
   if(off_time == 0){
@@ -127,9 +127,10 @@ bool Blinker::blink(int on_time, int off_time, unsigned long blink_max_time) {
   
   // Check if the blink time has been reached
 
-  if(current_time - _blink_max_time   >=   blink_max_time   &&   _time_reached == 0) {
+  if(current_time - _max_time   >=   _max_time   &&   _time_reached == false) {
 
     _time_reached = true; // Set the flag to indicate time has been reached
+    return false; // Not blinking
 
   }
 
@@ -143,16 +144,8 @@ bool Blinker::blink(int on_time, int off_time, unsigned long blink_max_time) {
     digitalWrite(_pin, _state); // Apply the state to the LED
     _delay = current_time; // Update the delay timer
     
-    return _time_reached; // Still blinking
+    return true; // Still blinking
 
   } 
-
-
-  else if(_time_reached == true) {
-
-    off(); // Turn off the LED after blink time is reached
-    return _time_reached; // Not blinking
-
-  }
 
 }
