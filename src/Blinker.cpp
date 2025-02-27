@@ -40,135 +40,119 @@
 */
 
 #include "Blinker.h"
-
 #include "Arduino.h"
 
-
 // Constructor to initialize the pin and default values
-
 Blinker::Blinker(byte pin) {
-
-  _pin = pin;
-  _state = LOW;  // Initialize the LED state as off
+  
+  _pin = pin;       // Set the pin number for the LED
+  _state = LOW;     // Initialize the LED state to LOW (off)
 
 }
-
-
-
 
 
 // Initialize the pin as an output
-
 void Blinker::begin() {
 
-  pinMode(_pin, OUTPUT);
-  digitalWrite(_pin, _state);
+  pinMode(_pin, OUTPUT);         // Set the pin as an output
+  digitalWrite(_pin, _state);    // Set the initial state of the LED
 
 }
-
-
-
 
 
 // Turn the LED on
-
 void Blinker::on() {
 
-  _state = HIGH;
-  digitalWrite(_pin, _state);  // Write HIGH to the LED pin to turn it on
+  _state = HIGH;                 // Set the state to HIGH (on)
+  digitalWrite(_pin, _state);    // Apply the state to the LED pin
 
 }
-
-
-
 
 
 // Turn the LED off
-
 void Blinker::off() {
 
-  _state = LOW;
-  digitalWrite(_pin, _state);  // Write LOW to the LED pin to turn it off
+  _state = LOW;                  // Set the state to LOW (off)
+  digitalWrite(_pin, _state);    // Apply the state to the LED pin
 
 }
 
 
+// Toggles the LED state (on/off)
+void Blinker::toggle() {
+
+  _state = !_state;              // Flip the current state (on/off)
+  digitalWrite(_pin, _state);     // Apply the new state to the LED pin
+
+}
 
 
-
-// Return the current state of the LED (HIGH/LOW)
-
+// Returns the current state of the LED (HIGH/LOW)
 bool Blinker::get() {
 
-  return _state;
+  return _state;                 // Return the current state (HIGH or LOW)
 
 }
 
 
-bool Blinker::blink(int on_time, int off_time, unsigned long max_time){
-  
-  unsigned long current_time = millis();
+// Blinks the LED with specified on/off times and a max time duration
+bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
 
-  
-  if(_initialized == false){
+  unsigned long current_time = millis();  // Get the current time in milliseconds
+  bool initialized;
 
-    if(off_time == 0){
-      off_time = on_time;
+  // Initialize the start time and set the off_time to on_time if not specified
+  if (!initialized) {
+
+    if (off_time == 0) {
+      off_time = on_time; // If off_time is not specified, use on_time as off_time
     }
 
-    _start_time = current_time;
-    _initialized = true;
+    _start_time = current_time;  // Record the start time for max_time
+    initialized = true;         // Mark the initialization as done
+
   }
 
 
-  if(current_time - _start_time >= max_time  &&  !_time_reached){
-    _time_reached == true;
-    return false;
+  // Check if the max_time has been reached
+  if (current_time - _start_time >= max_time) {
+    
+    off();                        // Turn the LED off
+    
+    return false;                 // Indicate that the blinking has stopped
+    return;
+
   }
 
-  if(current_time - _delay >= (_state == HIGH ? on_time : off_time)  &&  !_time_reached){
-    _state = !_state;
-    digitalWrite(_pin, _state);
-    _delay = current_time;
-    return true;
+  
+  // Blink the LED based on on_time and off_time
+  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)) {
+
+    toggle();                    // Toggle the LED state (on/off)
+    _delay = current_time;       // Update the delay time
+
   }
+
+  
+  return true;                   // Return true while blinking
+
 }
 
 
 
-
-
-
-
-
-
-
-
-
-// Blink the LED for a limited duration (blink_max_time) with specified on and off delays
-
-/*bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
-  if (off_time == 0) {
-      off_time = on_time;
-  }
-
+Blinker::fadeIn(int fade_time){
+  
   unsigned long current_time = millis();
+}
 
-  if (_max_time == 0) {
-    _max_time = current_time + max_time;
-  }
 
-  // If max_time is set and reached, stop blinking and turn LED off
-  if (current_time >= _max_time) {
-      _time_reached = true;
-      return false;  // Indicate blinking has stopped
-  }
 
-  // Normal blinking logic
-  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)  &&  _time_reached == false) {
-      _state = !_state;
-      digitalWrite(_pin, _state);
-      _delay = current_time;
-      return true;  // Indicate it's still blinking
-  }
-}*/
+Blinker::fadeOut(int fade_time){
+
+}
+
+
+
+Blinker::lin(int fade_time){
+
+}
