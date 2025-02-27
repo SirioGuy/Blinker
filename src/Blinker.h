@@ -40,13 +40,9 @@
 #ifndef Blinker_h
 
 
-
 #define Blinker_h
 
 #include "Arduino.h"
-
-
-
 
 
 class Blinker {
@@ -56,49 +52,37 @@ class Blinker {
     // Constructor to initialize the pin for the LED
     Blinker(byte pin);
 
-
-    
     // Starts the LED by setting the pinMode
     void begin();
-
-
 
     // Turns the LED on
     void on();
 
-
-
     // Turns the LED off
     void off();
-
-
     
     // Asks the current state of the LED (on or off)
     bool get();
 
-
-
     // Blinks the LED with specified on/off times and a total blink duration (blink_time)
     bool blink(int on_time, int off_time = 0, unsigned long max_time = -1);
-
 
 
   private:
 
     byte _pin;                 // Stores the pin number for the LED
 
-
     bool _state;               // Stores the state of the LED (on/off)
 
+    bool _time_reached = false;        // Used to check if the blink reach the maximum time
 
-    bool _time_reached;        // Used to check if the blink reach the maximum time
+    bool _blinking = false;    // Tracks whether blinking is active
 
+    unsigned long _delay = 0;      // Used to track the last time the LED state changed
 
-    unsigned long _delay;      // Used to track the last time the LED state changed
-
-
-    unsigned long _max_time;// Used to track the time and check if it exceeded of maximum time
+    unsigned long _start_time = 0; // Used to track when blinking started
 
 };
+
 
 #endif
