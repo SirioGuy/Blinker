@@ -80,7 +80,7 @@ class Blinker {
 
     unsigned long _delay = 0;      // Used to track the last time the LED state changed
 
-    unsigned long _start_time = 0; // Used to track when blinking started
+    unsigned long _max_time = 0; // Used to track when blinking started
 
 };
 
