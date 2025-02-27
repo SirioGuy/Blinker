@@ -110,7 +110,7 @@ bool Blinker::get() {
 
 // Blink the LED for a limited duration (blink_max_time) with specified on and off delays
 
-bool Blinker::blink(int on_time, int off_time) {
+bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
   if (off_time == 0) {
       off_time = on_time;  // If no off_time is provided, use on_time for both
   }
