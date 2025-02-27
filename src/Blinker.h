@@ -78,9 +78,11 @@ class Blinker {
 
     bool _blinking = false;    // Tracks whether blinking is active
 
+    bool _initialized = false;
+
     unsigned long _delay = 0;      // Used to track the last time the LED state changed
 
-    unsigned long _max_time = 0; // Used to track when blinking started
+    unsigned long _start_time = 0; // Used to track when blinking started
 
 };
 
