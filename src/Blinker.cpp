@@ -112,17 +112,30 @@ bool Blinker::get() {
 
 bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
   if (off_time == 0) {
-      off_time = on_time;  // If no off_time is provided, use on_time for both
+      off_time = on_time;
   }
 
   unsigned long current_time = millis();
 
-  // Check if it's time to toggle the LED state
-  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)) {
-      _state = !_state;  // Toggle LED state
-      digitalWrite(_pin, _state);
-      _delay = current_time;  // Update the last toggle time
+  // If max_time is set and reached, stop blinking and turn LED off
+  if (max_time != (unsigned long)-1 && current_time - _max_time >= max_time) {
+      _state = LOW;
+      digitalWrite(_pin, LOW);
+      return false;  // Indicate blinking has stopped
   }
 
-  return true;  // Always return true because it's still blinking
+  // Normal blinking logic
+  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)) {
+      _state = !_state;
+      digitalWrite(_pin, _state);
+      _delay = current_time;
+
+      // Start counting from the first toggle
+      if (_state == HIGH && _max_time == 0) {
+          _max_time = current_time;
+      }
+  }
+
+  return true;  // Indicate it's still blinking
 }
+
