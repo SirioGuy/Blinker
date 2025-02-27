@@ -137,22 +137,3 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
   return true;                   // Return true while blinking
 
 }
-
-
-
-Blinker::fadeIn(int fade_time){
-  
-  unsigned long current_time = millis();
-}
-
-
-
-Blinker::fadeOut(int fade_time){
-
-}
-
-
-
-Blinker::lin(int fade_time){
-
-}
