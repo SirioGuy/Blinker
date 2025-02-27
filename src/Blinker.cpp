@@ -118,22 +118,16 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
   unsigned long current_time = millis();
 
   // If max_time is set and reached, stop blinking and turn LED off
-  if (max_time != (unsigned long)-1 && current_time - _max_time >= max_time) {
-      _state = LOW;
-      digitalWrite(_pin, LOW);
+  if (current_time - max_time >= max_time) {
+      _time_reached = true;
       return false;  // Indicate blinking has stopped
   }
 
   // Normal blinking logic
-  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)) {
+  if (current_time - _delay >= (_state == HIGH ? on_time : off_time)  &&  _time_reached == false) {
       _state = !_state;
       digitalWrite(_pin, _state);
       _delay = current_time;
-
-      // Start counting from the first toggle
-      if (_state == HIGH && _max_time == 0) {
-          _max_time = current_time;
-      }
   }
 
   return true;  // Indicate it's still blinking
