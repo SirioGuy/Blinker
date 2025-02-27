@@ -117,8 +117,12 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
 
   unsigned long current_time = millis();
 
+  if (_max_time == 0) {
+    _max_time = current_time + max_time;
+  }
+
   // If max_time is set and reached, stop blinking and turn LED off
-  if (current_time - max_time >= max_time) {
+  if (current_time >= _max_time) {
       _time_reached = true;
       return false;  // Indicate blinking has stopped
   }
