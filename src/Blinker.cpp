@@ -128,8 +128,7 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
       _state = !_state;
       digitalWrite(_pin, _state);
       _delay = current_time;
+      return true;  // Indicate it's still blinking
   }
-
-  return true;  // Indicate it's still blinking
 }
 
