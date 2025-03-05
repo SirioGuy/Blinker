@@ -113,3 +113,11 @@ void Blinker::blink(int on_time, int off_time) {
   }
 
 }
+
+
+
+void Blinker::fadeIn(int fade_time){
+  while(true){
+    
+  }
+}

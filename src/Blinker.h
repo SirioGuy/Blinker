@@ -72,7 +72,7 @@ class Blinker {
 
 
     // Blinks the LED with specified on/off times and a total blink duration (blink_time)
-    void blink(int on_time, int off_time = 0);
+    void blink(int on_time, int off_time = on_time);
 
 
     void fadeIn(int fade_time = 1000);
