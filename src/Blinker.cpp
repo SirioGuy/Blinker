@@ -99,6 +99,7 @@ bool Blinker::get() {
 void Blinker::blink(int on_time, int off_time) {
 
   unsigned long current_time = millis();  // Get the current time in milliseconds
+  static unsigned long _delay = 0;
 
   if (off_time == 0) {
     off_time = on_time; // If off_time is not specified, use on_time as off_time
@@ -117,7 +118,22 @@ void Blinker::blink(int on_time, int off_time) {
 
 
 void Blinker::fadeIn(int fade_time){
-  while(true){
-    
+
+  unsigned long current_time = millis();  // Get the current time in milliseconds
+  static unsigned long _delay = 0;
+
+  static int pwm_value = 0;
+  int step = fade_time / 256;
+
+  if(current_time - _delay >= step){
+    analogWrite(_pin, pwm_value);
+    pwm_value++;
+
+    if(pwm_value > 255){
+      pwm_value = 255;
+    }
+
+    _delay = current_time;
   }
+
 }
