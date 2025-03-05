@@ -72,13 +72,13 @@ class Blinker {
 
 
     // Blinks the LED with specified on/off times and a total blink duration (blink_time)
-    bool blink(int on_time, int off_time = 0, unsigned long max_time = -1);
+    void blink(int on_time, int off_time = 0);
 
 
-    bool fadeIn(int fade_time = 1000);
+    void fadeIn(int fade_time = 1000);
 
 
-    bool fadeOut(int fade_time = 1000);
+    void fadeOut(int fade_time = 1000);
 
 
   private:
@@ -92,16 +92,7 @@ class Blinker {
 
     bool _state;                  // Stores the state of the LED (on/off)
 
-    bool _time_reached = false;   // Used to check if the blink reach the maximum time
-
-    bool _blinking = false;       // Tracks whether blinking is active
-
-    bool _initialized = false;    // Tracks if the Blinker object is initialized
-
     unsigned long _delay = 0;     // Used to track the last time the LED state changed
-
-    unsigned long _start_time = 0; // Used to track when blinking started
-
 
 };
 

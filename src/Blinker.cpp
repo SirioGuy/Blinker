@@ -96,34 +96,13 @@ bool Blinker::get() {
 
 
 // Blinks the LED with specified on/off times and a max time duration
-bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
+void Blinker::blink(int on_time, int off_time) {
 
   unsigned long current_time = millis();  // Get the current time in milliseconds
-  bool initialized;
 
-  // Initialize the start time and set the off_time to on_time if not specified
-  if (!initialized) {
-
-    if (off_time == 0) {
-      off_time = on_time; // If off_time is not specified, use on_time as off_time
-    }
-
-    _start_time = current_time;  // Record the start time for max_time
-    initialized = true;         // Mark the initialization as done
-
+  if (off_time == 0) {
+    off_time = on_time; // If off_time is not specified, use on_time as off_time
   }
-
-
-  // Check if the max_time has been reached
-  if (current_time - _start_time >= max_time) {
-    
-    off();                        // Turn the LED off
-    
-    return false;                 // Indicate that the blinking has stopped
-    return;
-
-  }
-
   
   // Blink the LED based on on_time and off_time
   if (current_time - _delay >= (_state == HIGH ? on_time : off_time)) {
@@ -132,8 +111,5 @@ bool Blinker::blink(int on_time, int off_time, unsigned long max_time) {
     _delay = current_time;       // Update the delay time
 
   }
-
-  
-  return true;                   // Return true while blinking
 
 }
